@@ -1,0 +1,27 @@
+@layout('layouts.app')
+
+@section('content')
+    <a href="/" class="btn btn-outline-info">
+        <i class="fa-sharp fa-solid fa-arrow-left"></i> Volver
+    </a>
+    <h2>Agregar nuevo articulo</h2>
+    <form action="" method="post">
+        <label for="titulo">Titulo</label>
+        <input type="text" class="form-control" id="titulo" name="titulo">
+        <label for="Texto">Texto</label>
+        <input type="text" class="form-control" id="texto" name="texto">
+
+        <label for="Imagen">Imagen</label>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFileLang" lang="es">
+            <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
+        </div>
+
+
+        <label for="fechaNacimiento">Fecha de publicacion</label>
+        <input type="date" name="fechaNacimiento" id="fechaNacimiento" class="form-control">
+        <button class="btn btn-primary mt-3" >
+        <i class="fa-solid fa-floppy-disk"></i> Agregar
+        </button>
+    </form>
+@endsection

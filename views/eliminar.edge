@@ -1,0 +1,46 @@
+@layout('layouts.app')
+
+@section('content')
+    
+    <a href="/" class="btn btn-outline-info">
+        <i class="fa-sharp fa-solid fa-arrow-left"></i> Volver
+    </a>
+
+    <h2>Eliminar Registro</h2>
+                    
+    <table class="table table-bordered">
+
+        <thead>
+            <th>Articulo</th>
+            <th>Titulo</th>
+            <th>Texto</th>
+            <th>Imagen</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+
+    <div class="alert alert-danger" role="alert">
+    ¿Estas seguro de eliminar el artuculo?
+    </div>
+
+    <form action="" method="post">
+        <button class="btn btn-danger">
+
+        <i class="fa-solid fa-circle-x"></i> Eliminar
+
+        </button>
+    </form>
+
+@endsection

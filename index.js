@@ -19,15 +19,26 @@ app.get('/', (req, res) => {
 
 app.get('/actualizar', (req, res) => {
 
-    res.sendFile(path.resolve(__dirname, 'paginas/actualizar.html'))
+    //res.sendFile(path.resolve(__dirname, 'paginas/actualizar.html'))
+    res.render('actualizar')
+
+});
+
+app.get('/agregar', (req, res) => {
+
+    //res.sendFile(path.resolve(__dirname, 'paginas/actualizar.html'))
+    res.render('agregar')
 
 });
 
 app.get('/eliminar', (req, res) => {
 
-    res.sendFile(path.resolve(__dirname, 'paginas/eliminar.html'))
+    //res.sendFile(path.resolve(__dirname, 'paginas/eliminar.html'))
+    res.render('eliminar')
 
 });
+
+
 
 app.listen(4001 , () => {
 
