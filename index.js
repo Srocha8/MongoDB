@@ -2,11 +2,18 @@
 const path = require('path');
 const express = require('express');
 
+const { config, engine } = require('express-edge')
+
 const app = new express()
+
+// Automatically sets view engine and adds dot notation to app.render
+app.use(engine);
+app.set('views', `${__dirname}/views`);
 
 app.get('/', (req, res) => {
 
-    res.sendFile(path.resolve(__dirname, 'paginas/index.html'))
+    //res.sendFile(path.resolve(__dirname, 'paginas/index.html'))
+    res.render('index')
 
 });
 
