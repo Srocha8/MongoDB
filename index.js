@@ -43,8 +43,6 @@ app.get('/', async(req, res) => {
 
     const notis = await Noticias.find({})
 
-    console.log(notis);
-
     res.render('index', {
         notis
     })
@@ -75,7 +73,6 @@ app.get('/agregar/:id', async(req, res) => {
 
     //res.sendFile(path.resolve(__dirname, 'paginas/actualizar.html'))
     const idnoticia = await Noticias.findById(req.params.id)
-    console.log(idnoticia);
     res.render('agregar', {
         idnoticia
     })
@@ -88,6 +85,7 @@ app.post('/agregar/guardar', (req, res) => {
 
     Noticias.findByIdAndUpdate(idnoticias,{
 
+        edicion: req.body.edicion,
         seccion: req.body.seccion,
         titulo: req.body.titulo,
         texto: req.body.texto,
@@ -102,24 +100,34 @@ app.post('/agregar/guardar', (req, res) => {
 
 })
 
-app.get('/eliminar', (req, res) => {
-
-    //res.sendFile(path.resolve(__dirname, 'paginas/eliminar.html'))
-    res.render('eliminar')
-
-});
 
 app.get('/eliminar/:id', async(req, res) => {
 
-    //res.sendFile(path.resolve(__dirname, 'paginas/eliminar.html'))
-    const idnoticia = await Noticias.findById(req.params.id)
-    console.log(idnoticia);
+    const idnoticia = await Noticias.findByIdAndRemove(req.params.id)
+
+    console.log(idnoticia, 'id noticiaa');
+
     res.render('eliminar', {
         idnoticia
     })
 
 });
 
+app.post('/eliminar', (req, res) => {
+
+    const idnoticia = req.body.id
+    console.log(idnoticia,'PTA MADRE')
+
+    Noticias.findByIdAndDelete(idnoticia, function(err){
+
+        if (err) {
+            res.send(err);            
+        }
+        else{
+            res.redirect("/")
+        }
+    })
+})
 
 app.listen(4001 , () => {
 

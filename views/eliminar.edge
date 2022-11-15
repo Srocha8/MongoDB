@@ -1,48 +1,46 @@
 @layout('layouts.app')
 
 @section('content')
-    
-    <a href="/" class="btn btn-outline-info">
-        <i class="fa-sharp fa-solid fa-arrow-left"></i> Volver
-    </a>
+    <form action="/eliminar" method="POST">
+        <a href="/" class="btn btn-outline-info">
+            <i class="fa-sharp fa-solid fa-arrow-left"></i> Volver
+        </a>
 
-    <h2>Eliminar Registro</h2>
-                    
-    <table class="table table-bordered">
+        <h2>Eliminar Registro</h2>
+                        
+        <table class="table table-bordered">
 
-        <thead class="text-center">
-            <th>Seccion</th>
-            <th>Titulo</th>
-            <th>Texto</th>
-            <th>Imagen</th>
-            <th>Fecha</th>
-            <th>Eliminar</th>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{idnoticia.seccion}}</td>
-                <td>{{idnoticia.titulo}}</td>
-                <td>{{idnoticia.texto}}</td>
-                <td>{{idnoticia.imagen}}</td>
-                <td>{{idnoticia.fecha}}</td>
-                <td class="text-center">
-                        <form action=""></form>
-                        <button class="btn btn-danger"> <i class="fa-solid fa-trash"></i> Eliminar</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <hr>
+            <thead class="text-center">
+                <th>ID</th>
+                <th>Edicion</th>
+                <th>Seccion</th>
+                <th>Titulo</th>
+                <th>Texto</th>
+                <th>Imagen</th>
+                <th>Fecha</th>
+                <th>Eliminar</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{idnoticia._id}}</td>
+                    <td>{{idnoticia.edicion}}</td>
+                    <td>{{idnoticia.seccion}}</td>
+                    <td>{{idnoticia.titulo}}</td>
+                    <td>{{idnoticia.texto}}</td>
+                    <td>{{idnoticia.imagen}}</td>
+                    <td>{{idnoticia.fecha}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
 
-    <div class="alert alert-danger" role="alert">
-    ¿Estas seguro de eliminar el artuculo?
-    </div>
+        <div class="alert alert-danger" role="alert">
+        ¿Estas seguro de eliminar el artuculo?
+        </div>
 
-    <form action="" method="post">
-        <button class="btn btn-danger">
-
-        <i class="fa-solid fa-circle-x"></i> Eliminar
-
+        
+            <button class="btn btn-danger btn">
+            Eliminar
         </button>
     </form>
 
