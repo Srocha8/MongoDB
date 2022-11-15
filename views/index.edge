@@ -3,6 +3,8 @@
 
 
 @section('content')
+    
+
     <a href="/actualizar" class="btn btn-primary">
     <i class="fa-solid fa-newspaper"></i> Agregar Nuevo Articulo 
     </a>
@@ -18,21 +20,26 @@
             <th>Eliminar</th>
         </thead>
         <tbody>
+            @each(noticia in notis)
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{noticia.seccion}}</td>
+                <td>{{noticia.titulo}}</td>
+                <td>{{noticia.texto}}</td>
+                <td>{{noticia.imagen}}</td>
+                <td>{{noticia.fecha}}</td>
                 <td class="text-center">
-                    <form action="" method = "post"></form>
-                        <button class = "btn btn-warning"> <i class="fa-solid fa-pencil"></i> Editar</button>
+                    <a href="/agregar/{{noticia._id}}" class = "btn btn-warning">
+                        <i class="fa-solid fa-newspaper"></i> Editar
+                        </a>
                 </td>
                 <td class="text-center">
-                    <form action=""></form>
-                    <button class="btn btn-danger"> <i class="fa-solid fa-trash"></i> Eliminar</button>
+                    <a href="/eliminar/{{noticia._id}}" class = "btn btn-danger">
+                        <i class="fa-solid fa-newspaper"></i> eliminar
+                        </a>
                 </td>
             </tr>
+            @endeach
         </tbody>
     </table>
+
 @endsection

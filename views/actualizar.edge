@@ -4,10 +4,17 @@
     <a href="/" class="btn btn-outline-info">
         <i class="fa-sharp fa-solid fa-arrow-left"></i> Volver
     </a>
-    <h2>Agregar nuevo articulo</h2>
     <form action="/actualizar/guardar" method="post">
+        
         <label for="titulo">Seccion</label>
-        <input type="text" class="form-control" id="titulo" name="seccion">
+        <select name="seccion" class="form-control">
+            <option>Tecnologia</option>
+            <option>Ciencia</option>
+            <option>Economia</option>
+            <option>Estudios</option>
+            <option>Innovación</option>
+            <option>Otros</option>
+          </select>
         <label for="titulo">Titulo</label>
         <input type="text" class="form-control" id="titulo" name="titulo">
         <label for="Texto">Texto</label>

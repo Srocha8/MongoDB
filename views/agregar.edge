@@ -1,38 +1,38 @@
 @layout('layouts.app')
 
 @section('content')
-    
-    <a href="/actualizar" class="btn btn-primary">
-    <i class="fa-solid fa-newspaper"></i> Agregar Nuevo Articulo
+    <a href="/" class="btn btn-outline-info">
+        <i class="fa-sharp fa-solid fa-arrow-left"></i> Volver
     </a>
-    <hr>
-    <table class ="table table-hover table-bordered"> 
-        <thead class="text-center">
-            <th>Seccion</th>
-            <th>Titulo</th>
-            <th>Texto</th>
-            <th>Imagen</th>
-            <th>Fecha</th>
-            <th>Editar</th>
-            <th>Eliminar</th>
-        </thead>
-        <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="text-center">
-                    <form action="" method = "post"></form>
-                        <button class = "btn btn-warning"> <i class="fa-solid fa-pencil"></i> Editar</button>
-                </td>
-                <td class="text-center">
-                    <form action=""></form>
-                    <button class="btn btn-danger"> <i class="fa-solid fa-trash"></i> Eliminar</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <form action="/agregar/guardar" method="post">
+        
+        <label for="titulo">ID:</label>
+        <input type="text" class="form-control" id="titulo" name="id" value="{{idnoticia._id}}" readonly>
+        <label for="titulo">Seccion</label>
+        <select name="seccion" class="form-control" value="{{idnoticia._seccion}}">
+            <option>Tecnologia</option>
+            <option>Ciencia</option>
+            <option>Economia</option>
+            <option>Estudios</option>
+            <option>Innovación</option>
+            <option>Otros</option>
+          </select>
+        <label for="titulo">Titulo</label>
+        <input type="text" class="form-control" id="titulo" name="titulo" value="{{idnoticia.titulo}}">
+        <label for="Texto">Texto</label>
+        <input type="text" class="form-control" id="texto" name="texto" value="{{idnoticia.texto}}">
 
+        <label for="Imagen">Imagen</label>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFileLang" name="imagen" value="{{idnoticia.imagen}}">
+            <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
+        </div>
+
+
+        <label for="fechaNacimiento">Fecha de publicacion</label>
+        <input type="date" id="fechaNacimiento" class="form-control" name="fecha" value="{{idnoticia.fecha}}">
+        <button class="btn btn-primary mt-3" >
+        <i class="fa-solid fa-floppy-disk"></i> EDITAR NOTICIA
+        </button>
+    </form>
 @endsection
