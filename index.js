@@ -36,6 +36,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 //static files
 app.use(express.static(('public')));
 
+
 //Guardar y procesar imagen
 const storage = multer.diskStorage({
     destination: path.join(__dirname, 'public/img'),
