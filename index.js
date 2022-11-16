@@ -73,8 +73,6 @@ app.get('/', async(req, res) => {
 app.get('/revista', async(req, res) => {
 
     const notis = await Noticias.find({})
-    console.log(notis)
-    console.log(req.file, 'Foto')
 
     res.render('revista', {
         notis,
@@ -168,7 +166,6 @@ app.post('/eliminar/borrarfull/:id', (req, res) => {
     const idnoti = req.body.id
     Noticias.findByIdAndRemove(idnoti,
 
-        console.log(idnoti), 
         
         (error, Noticias) => {
 
@@ -178,9 +175,10 @@ app.post('/eliminar/borrarfull/:id', (req, res) => {
 
 })
 
-app.post('/revista/seccion', async(req, res) => {
+app.post('/revista/seccion', subimg, async(req, res) => {
 
-    const notis = await Noticias.find({seccion : req.body.seccion})
+    const notis = await Noticias.find({seccion : req.body.seccion, edicion: req.body.edicion})
+    console.log(notis);
     res.render('revista', {
         notis,
     })
