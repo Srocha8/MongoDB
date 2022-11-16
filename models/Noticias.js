@@ -14,7 +14,6 @@ const NoticiaSchema = new Schema({
     fecha: Date
 })
 
-
 //crear modelo
 const Noticias = mongoose.model('Noticias', NoticiaSchema);
 module.exports = Noticias;

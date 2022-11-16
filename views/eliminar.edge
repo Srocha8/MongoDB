@@ -1,12 +1,14 @@
 @layout('layouts.app')
 
 @section('content')
-    <form action="/eliminar" method="POST">
+    <form action="/eliminar/borrarfull/{{idnoticia._id}}" method="POST">
         <a href="/" class="btn btn-outline-info">
             <i class="fa-sharp fa-solid fa-arrow-left"></i> Volver
         </a>
-
-        <h2>Eliminar Registro</h2>
+        <div>
+            <hr>
+        </div>
+        <h2>Registro Eliminado</h2>
                         
         <table class="table table-bordered">
 
@@ -18,7 +20,6 @@
                 <th>Texto</th>
                 <th>Imagen</th>
                 <th>Fecha</th>
-                <th>Eliminar</th>
             </thead>
             <tbody>
                 <tr>
@@ -27,7 +28,7 @@
                     <td>{{idnoticia.seccion}}</td>
                     <td>{{idnoticia.titulo}}</td>
                     <td>{{idnoticia.texto}}</td>
-                    <td>{{idnoticia.imagen}}</td>
+                    <td><img src="{{idnoticia.imagen}}" class="img-thumbnail"></td>
                     <td>{{idnoticia.fecha}}</td>
                 </tr>
             </tbody>
@@ -35,13 +36,8 @@
         <hr>
 
         <div class="alert alert-danger" role="alert">
-        ¿Estas seguro de eliminar el artuculo?
+        Acaba de eliminar este arcticulo
         </div>
-
-        
-            <button class="btn btn-danger btn">
-            Eliminar
-        </button>
     </form>
 
 @endsection

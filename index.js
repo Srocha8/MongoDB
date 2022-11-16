@@ -1,10 +1,9 @@
- 
 
-
-const path = require('path');
-const express = require('express');
-
+const path = require('path')
+const express = require('express')
 const { config, engine } = require('express-edge')
+const multer = require('multer')
+
 
 const app = new express()
 
@@ -27,10 +26,29 @@ mongoose.connect(uri)
 
 //parser
 const bodyParser = require('body-parser')
+const { v4: uuidv4 } = require('uuid')
+
 
 //body-parser
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
+
+//static files
+app.use(express.static(('public')));
+
+//Guardar y procesar imagen
+const storage = multer.diskStorage({
+    destination: path.join(__dirname, 'public/img'),
+    filename: (req, file, cb, filename) => {
+        cb(null, uuidv4() + path.extname(file.originalname))
+    }
+    
+})
+const subimg = (multer({
+
+    storage: storage 
+
+}).single('imagen'));
 
 // Automatically sets view engine and adds dot notation to app.render
 app.use(engine);
@@ -42,12 +60,28 @@ app.set('views', `${__dirname}/views`);
 app.get('/', async(req, res) => {
 
     const notis = await Noticias.find({})
+    console.log(notis)
+    console.log(req.file, 'Foto')
 
     res.render('index', {
-        notis
+        notis,
     })
 
 });
+
+
+app.get('/revista', async(req, res) => {
+
+    const notis = await Noticias.find({})
+    console.log(notis)
+    console.log(req.file, 'Foto')
+
+    res.render('revista', {
+        notis,
+    })
+
+});
+
 
 
 //actualizar base de datos
@@ -56,10 +90,27 @@ app.get('/actualizar', (req, res) => {
     res.render('actualizar')
 
 });
-app.post('/actualizar/guardar', (req, res) => {
-    Noticias.create(req.body, (error,Noticias) => {
-        res.redirect('/')
-    })
+app.post('/actualizar/guardar', subimg, (req, res) => {
+  
+    var obj = {
+        edicion: req.body.edicion,
+        seccion: req.body.seccion,
+        titulo: req.body.titulo,
+        texto: req.body.texto,
+        imagen: 'img/' + req.file.filename,
+        fecha: req.body.fecha
+    }
+
+    Noticias.create(obj, (err, item) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            // item.save();
+            res.redirect('/');
+        }
+    });
+
 })
 
 
@@ -80,16 +131,16 @@ app.get('/agregar/:id', async(req, res) => {
 });
 
 //ver datos base de datos
-app.post('/agregar/guardar', (req, res) => {
+app.post('/agregar/guardar', subimg, (req, res) => {
     const idnoticias = req.body.id
-
+    
     Noticias.findByIdAndUpdate(idnoticias,{
 
         edicion: req.body.edicion,
         seccion: req.body.seccion,
         titulo: req.body.titulo,
         texto: req.body.texto,
-        imagen: req.body.imagen,
+        imagen: 'img/' + req.file.filename,
         fecha: req.body.fecha
 
     }, (error, Noticias) => {
@@ -105,7 +156,7 @@ app.get('/eliminar/:id', async(req, res) => {
 
     const idnoticia = await Noticias.findByIdAndRemove(req.params.id)
 
-    console.log(idnoticia, 'id noticiaa');
+    console.log(idnoticia, '-----ELIMINADO PAAA----');
 
     res.render('eliminar', {
         idnoticia
@@ -113,21 +164,28 @@ app.get('/eliminar/:id', async(req, res) => {
 
 });
 
-app.post('/eliminar', (req, res) => {
+app.post('/eliminar/borrarfull/:id', (req, res) => {
+    const idnoti = req.body.id
+    Noticias.findByIdAndRemove(idnoti,
 
-    const idnoticia = req.body.id
-    console.log(idnoticia,'PTA MADRE')
+        console.log(idnoti), 
+        
+        (error, Noticias) => {
 
-    Noticias.findByIdAndDelete(idnoticia, function(err){
+        res.redirect('/')
 
-        if (err) {
-            res.send(err);            
-        }
-        else{
-            res.redirect("/")
-        }
     })
+
 })
+
+app.post('/revista/seccion', async(req, res) => {
+
+    const notis = await Noticias.find({seccion : req.body.seccion})
+    res.render('revista', {
+        notis,
+    })
+
+});
 
 app.listen(4001 , () => {
 

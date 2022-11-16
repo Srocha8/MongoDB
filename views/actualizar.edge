@@ -4,7 +4,7 @@
     <a href="/" class="btn btn-outline-info">
         <i class="fa-sharp fa-solid fa-arrow-left"></i> Volver
     </a>
-    <form action="/actualizar/guardar" method="post">
+    <form action="/actualizar/guardar" method="post" enctype="multipart/form-data">
         
         <label for="titulo">Edicion</label>
         <input type="number" class="form-control" id="titulo" name="edicion" value="{{idnoticia.edicion}}">

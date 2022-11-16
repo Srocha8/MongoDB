@@ -27,15 +27,15 @@
                 <td>{{noticia.seccion}}</td>
                 <td>{{noticia.titulo}}</td>
                 <td>{{noticia.texto}}</td>
-                <td>{{noticia.imagen}}</td>
+                <td><img src="{{noticia.imagen}}" class="img-thumbnail"></td>
                 <td>{{noticia.fecha}}</td>
                 <td class="text-center">
-                    <a href="/agregar/{{noticia._id}}" class = "btn btn-warning">
+                    <a href="/agregar/{{noticia._id}}" class = "btn btn-warning rounded mx-auto d-block">
                         <i class="fa-solid fa-newspaper"></i> Editar
                         </a>
                 </td>
                 <td class="text-center">
-                    <a href="/eliminar/{{noticia._id}}" class = "btn btn-danger">
+                    <a href="/eliminar/{{noticia._id}}" class = "btn btn-danger rounded mx-auto d-block">
                         <i class="fa-solid fa-newspaper"></i> eliminar
                         </a>
                 </td>

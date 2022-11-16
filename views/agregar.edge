@@ -4,7 +4,7 @@
     <a href="/" class="btn btn-outline-info">
         <i class="fa-sharp fa-solid fa-arrow-left"></i> Volver
     </a>
-    <form action="/agregar/guardar" method="post">
+    <form action="/agregar/guardar" method="post" enctype="multipart/form-data">
         
         <label for="titulo">ID:</label>
         <input type="text" class="form-control" id="titulo" name="id" value="{{idnoticia._id}}" readonly>
