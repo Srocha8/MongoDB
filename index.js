@@ -57,7 +57,7 @@ app.set('views', `${__dirname}/views`);
 
 
 
-app.get('/', (req, res) => {
+app.get('/', async(req, res) => {
 
     const notis = await Noticias.find({})
     console.log("Hola mundo")
