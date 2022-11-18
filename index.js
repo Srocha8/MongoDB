@@ -1,4 +1,3 @@
-
 const path = require('path')
 const express = require('express')
 const { config, engine } = require('express-edge')
@@ -58,7 +57,7 @@ app.set('views', `${__dirname}/views`);
 
 
 
-app.get('/', async(req, res) => {
+app.get('/index', async(req, res) => {
 
     const notis = await Noticias.find({})
     console.log(notis)
