@@ -59,13 +59,13 @@ app.set('views', `${__dirname}/views`);
 
 app.get('/', (req, res) => {
 
-    // const notis = await Noticias.find({})
+    const notis = await Noticias.find({})
     console.log("Hola mundo")
-    // //console.log(req.file, 'Foto')
+     //console.log(req.file, 'Foto')
 
-    // res.render('index', {
-    //     notis
-    // })
+     res.render('index', {
+         notis
+     })
 
 });
 
