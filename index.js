@@ -162,16 +162,10 @@ app.get('/eliminar/:id', async(req, res) => {
 
 });
 
-app.post('/eliminar/borrarfull/:id', (req, res) => {
-    const idnoti = req.body.id
-    Noticias.findByIdAndRemove(idnoti,
+app.post('/eliminar/borrarfull', (req, res) => {
+    
+          res.redirect('/')
 
-        
-        (error, Noticias) => {
-
-        res.redirect('/')
-
-    })
 
 })
 
