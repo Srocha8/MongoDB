@@ -185,7 +185,7 @@ app.post('/revista/seccion', subimg, async(req, res) => {
 
 });
 
-app.listen(4001 , () => {
+app.listen(process.env.PORT || 8080, () => {
 
     console.log("Aplicacion corriendo en el puerto 4001", 4001)
 });
