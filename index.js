@@ -176,7 +176,7 @@ app.post('/eliminar/borrarfull', (req, res) => {
 
 app.post('/revista/seccion', async(req, res) => {
 
-    const notis = await Noticias.find({seccion : req.body.seccion, edicion: req.body.edicion})
+    const notis = await Noticias.find({ $or:[{seccion : req.body.seccion , edicion: req.body.edicion},{seccion : req.body.seccion},{edicion: req.body.edicion}]})
     res.render('revista', {
         notis,
     })

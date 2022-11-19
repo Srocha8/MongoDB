@@ -81,7 +81,7 @@
         <p class="lead text">Aqui podras encontraras todas las noticias relacionadas con la tecnologia, Ciencia, Economia, Inovvacion con multimedia 😎, puedes filtrarlas por secciones y ediciones 🔍</p>
         <p>
         </p><a href="/" class="btn btn-primary my-2">ADMINISTRADOR DE NOTICIAS</a><br>
-        <label for="titulo">Seccion</label>
+        <label for="titulo">Secciones creadas por los usuarios</label>
         <form action="/revista/seccion" method="post">
           <select name="seccion" class="form-control">
             <option></option>
@@ -90,7 +90,7 @@
             @endeach
         </select>
           <br>
-          <label for="titulo">Edicion</label>
+          <label for="titulo">Ediciones creadas por los usuarios</label>
           <select name="edicion" class="form-control">
             <option></option>
             @each(noticia in notis)
@@ -128,10 +128,13 @@
                 </div>
         </div>
                    
-                   
-                    
-                    
-            
+      <div class="py-5 text-center container">
+        <a href="/revista">
+          <button type="button">
+          Cargar todas la noticias
+          </button>
+       </a>
+      </div>
 
 </main>
 
