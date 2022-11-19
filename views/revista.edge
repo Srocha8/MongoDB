@@ -32,6 +32,7 @@
           font-size: 3.5rem;
         }
       }
+
     </style>
 
     
@@ -39,7 +40,7 @@
   <body>
     
 <header>
-  <div class="collapse bg-dark" id="navbarHeader">
+  <div class="collapse bg-dark" id="navbarHeader" style="background-image: url(https://harttohart.com/wp-content/uploads/2017/12/gradient-black-background-wallpaper-1.jpg);">
     <div class="container">
       <div class="row">
         <div class="col-sm-8 col-md-7 py-4">
@@ -49,9 +50,9 @@
         <div class="col-sm-4 offset-md-1 py-4">
           <h4 class="text-white">Contacto</h4>
           <ul class="list-unstyled">
-            <li><a href="#" class="text-white">Instagram</a></li>
-            <li><a href="#" class="text-white">Facebook</a></li>
-            <li><a href="#" class="text-white">Email</a></li>
+            <li><a href="https://www.linkedin.com/in/sabas-rocha-galvis-09144b20b/" class="text-white">LinkedIn Sabas Rocha</a></li>
+            <li><a href="https://www.linkedin.com/in/nicolas-rozo-29b85923b/" class="text-white">LinkedIn Nicolas Rozo</a></li>
+            <li><a href="malito:sabasrochagal@gmail.com?" class="text-white">Email</a></li>
           </ul>
         </div>
       </div>
@@ -70,28 +71,32 @@
   </div>
 </header>
 
-<main>
 
-  <section class="py-5 text-center container">
+<main style="background-image: url(https://bangsaid.com/wp-content/uploads/2015/06/background-image-repeat-17-cool-hd-background-and-wallpaper.png);">
+
+  <section class="py-5 text-center container" id="bgfondo">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Blog</h1>
-        <p class="lead text-muted">Aqui encontraras todas las noticias relacionadas con la tecnologia, Ciencia, Economia, Inovvacion con multimedia 😎</p>
+        <h1 class="fw-light">🔎 Buscador 🔍</h1>
+        <p class="lead text">Aqui podras encontraras todas las noticias relacionadas con la tecnologia, Ciencia, Economia, Inovvacion con multimedia 😎, puedes filtrarlas por secciones y ediciones 🔍</p>
         <p>
         </p><a href="/" class="btn btn-primary my-2">ADMINISTRADOR DE NOTICIAS</a><br>
         <label for="titulo">Seccion</label>
         <form action="/revista/seccion" method="post">
           <select name="seccion" class="form-control">
-            <option>Tecnologia</option>
-            <option>Ciencia</option>
-            <option>Economia</option>
-            <option>Estudios</option>
-            <option>Innovación</option>
-            <option>Otros</option>
-          </select>
+            <option></option>
+            @each(noticia in notis)
+             <option>{{noticia.seccion}}</option>
+            @endeach
+        </select>
           <br>
           <label for="titulo">Edicion</label>
-          <input type="number" class="form-control" id="titulo" name="edicion" value="{{idnoticia.edicion}}">
+          <select name="edicion" class="form-control">
+            <option></option>
+            @each(noticia in notis)
+             <option>{{noticia.edicion}}</option>
+            @endeach
+        </select>
           <br>
           <button class="btn btn-outline-info" type="submit">BUSCAR</button>
         </form>
@@ -112,8 +117,9 @@
                                     <p class="card-text">{{noticia.texto}}</p>
                                 </div>
                                 <div class="card-footer">
-                                    <small class="text-muted">{{noticia.fecha}}</small>
-                                    <p class="text-muted">{{noticia.edicion}}</p>
+                                    <small class="text-muted">Fecha de publicación: {{noticia.fecha}}</small>
+                                    <p class="text-muted">Seccion:: {{noticia.seccion}}}</p>
+                                    <p class="text-muted">Edicion: {{noticia.edicion}}</p>
                                 </div>
                             </div>
                         </div>

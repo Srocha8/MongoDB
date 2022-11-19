@@ -4,6 +4,7 @@ const { config, engine } = require('express-edge')
 const multer = require('multer')
 
 
+
 const app = new express()
 
 //credenciales base de datos
@@ -33,7 +34,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 
 //static files
-app.use(express.static(('public')));
+app.use(express.static((__dirname + '/public')));
 
 
 //Guardar y procesar imagen
@@ -60,7 +61,7 @@ app.set('views', `${__dirname}/views`);
 app.get('/', async(req, res) => {
 
     const notis = await Noticias.find({})
-    console.log("Hola mundo")
+    //console.log("Hola mundo")
      //console.log(req.file, 'Foto')
 
      res.render('index', {
@@ -82,10 +83,14 @@ app.get('/revista', async(req, res) => {
 
 
 
-//actualizar base de datos
-app.get('/actualizar', (req, res) => {
+//Agregar una nueva noticia base de datos
+app.get('/actualizar', async(req, res) => {
 
-    res.render('actualizar')
+    const notis = await Noticias.find({})
+    console.log(notis, "seccion");
+    res.render('actualizar', {
+        notis,
+    })
 
 });
 app.post('/actualizar/guardar', subimg, (req, res) => {
@@ -152,7 +157,7 @@ app.post('/agregar/guardar', subimg, (req, res) => {
 
 app.get('/eliminar/:id', async(req, res) => {
 
-    const idnoticia = await Noticias.findByIdAndRemove(req.params.id)
+    const idnoticia = await Noticias.findByIdAndDelete(req.params.id)
 
     console.log(idnoticia, '-----ELIMINADO PAAA----');
 
@@ -169,15 +174,16 @@ app.post('/eliminar/borrarfull', (req, res) => {
 
 })
 
-app.post('/revista/seccion', subimg, async(req, res) => {
+app.post('/revista/seccion', async(req, res) => {
 
     const notis = await Noticias.find({seccion : req.body.seccion, edicion: req.body.edicion})
-    console.log(notis);
     res.render('revista', {
         notis,
     })
 
 });
+
+
 
 app.listen(process.env.PORT || 8080, () => {
 
